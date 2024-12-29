@@ -43,6 +43,6 @@ def sample_marginal(
     idx = rng.choice(len(lams))
     while True:
         the = next(instantiate_sampler(data, lams[idx], rng))
-        log_psi = np.array([eval_logprior(the, lams_) for lams_ in lams])
+        log_psi = np.array([eval_logprior(data, the, lams_) for lams_ in lams])
         idx = rng.choice(len(lams), p=np.exp(log_psi - logsumexp(log_psi)))
         yield idx
